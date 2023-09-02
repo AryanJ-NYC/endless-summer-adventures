@@ -1,9 +1,8 @@
 'use client';
 
+import React, { Fragment } from 'react';
 import { Carousel as ImportedCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
-import React from 'react';
 
 export const Carousel = ({ imgUrls }: { imgUrls: string[] }) => {
   return (
@@ -18,10 +17,10 @@ export const Carousel = ({ imgUrls }: { imgUrls: string[] }) => {
       showThumbs={false}
     >
       {imgUrls.map((imgUrl) => (
-        <>
-          <img alt="hi" className="h-[66vh] object-cover" key={imgUrl} src={imgUrl} />
-          <div className="absolute top-0 bg-black opacity-50 h-full w-full" />
-        </>
+        <Fragment key={imgUrl}>
+          <img alt="hi" className="h-[66vh] object-cover" src={imgUrl} />
+          <div className="absolute top-0 bg-black opacity-60 h-full w-full" />
+        </Fragment>
       ))}
     </ImportedCarousel>
   );
