@@ -2,6 +2,8 @@ import { Carousel } from './homepage/Carousel';
 import { getReviews } from './homepage/google-places';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
+import { Section } from './homepage/Section';
+import { PricingSection } from './homepage/PricingSection';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -39,8 +41,8 @@ export default async function Home() {
           </a>
         </div>
       </div>
-      <div className="bg-orange-50 flex flex-col gap-y-4 px-2 sm:px-8 py-16">
-        <p className="max-w-2xl self-center font-medium text-orange-950 text-3xl text-center tracking-wide uppercase">
+      <Section>
+        <p className="max-w-2xl font-medium text-orange-950 text-3xl text-center tracking-wide uppercase">
           The best fishing charters in Marco Island, Isles of Capri and all Southwest Florida
         </p>
         {reviews.length ? (
@@ -89,18 +91,16 @@ export default async function Home() {
             </a>
           </div>
         ) : null}
-      </div>
-      <div className="bg-cyan-50 flex flex-col items-center gap-y-8 px-2 sm:px-8 py-16">
-        <p className="max-w-2xl font-medium text-cyan-800 text-3xl text-center tracking-wide uppercase">
+      </Section>
+      <PricingSection />
+      <Section className="gap-y-16">
+        <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wide uppercase">
           Meet Captain Nick Yacono
         </p>
         <img src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()} />
-        <p className="text-lg max-w-xl text-cyan-950">{homepage.meet_captain_nick_text}</p>
-      </div>
-      <div
-        className="bg-orange-50 flex flex-col items-center gap-y-4 px-2 sm:px-8 py-16 text-orange-950"
-        id="contact-us"
-      >
+        <p className="text-lg max-w-xl text-orange-950">{homepage.meet_captain_nick_text}</p>
+      </Section>
+      <Section id="contact-us">
         <div>
           <p className="max-w-2xl font-medium text-3xl text-center tracking-wide uppercase">
             Contact Us
@@ -124,7 +124,7 @@ export default async function Home() {
             Send Message
           </button>
         </form>
-      </div>
+      </Section>
     </main>
   );
 }
