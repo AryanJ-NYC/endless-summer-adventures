@@ -87,7 +87,7 @@ export default async function Home() {
               href={googleReviewsUrl}
               target="_blank"
             >
-              View all Google Reviews
+              Read all Google Reviews
             </a>
           </div>
         ) : null}

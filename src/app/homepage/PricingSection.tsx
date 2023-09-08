@@ -3,15 +3,15 @@ import { Section } from './Section';
 
 export const PricingSection = () => {
   return (
-    <Section className="gap-y-14">
+    <Section className="space-y-12">
       <p className="max-w-2xl font-medium text-3xl text-center tracking-wide uppercase">Pricing</p>
-      <div className="flex flex-col gap-y-4 md:flex-row md:justify-between w-full max-w-4xl px-1">
+      <div className="flex flex-col gap-y-6 md:flex-row md:justify-between items-center w-full max-w-5xl">
         <Card>
           <p className="border border-cyan-700 font-medium rounded-full text-sm text-center text-cyan-700">
             4 hours
           </p>
           <div className="text-center">
-            <p className="text-sm">🐟 Live bait 🐟</p>
+            <p>🐟 Live bait 🐟</p>
             <p className="text-2xl">$450</p>
           </div>
           <div className="text-center">
@@ -24,7 +24,7 @@ export const PricingSection = () => {
             6 hours
           </p>
           <div className="text-center">
-            <p className="text-sm">🐟 Live bait 🐟</p>
+            <p>🐟 Live bait 🐟</p>
             <p className="text-2xl">$625</p>
           </div>
           <div className="text-center">
@@ -37,7 +37,7 @@ export const PricingSection = () => {
             8 hours
           </p>
           <div className="text-center">
-            <p className="text-sm">🐟 Live bait 🐟</p>
+            <p>🐟 Live bait 🐟</p>
             <p className="text-2xl">$750</p>
           </div>
           <div className="text-center">
@@ -59,7 +59,7 @@ const Card: React.FC<
   return (
     <div
       {...props}
-      className="bg-white flex flex-col gap-y-8 py-8 px-24 rounded-lg text-gray-800"
+      className="bg-white flex flex-col gap-y-8 py-8 px-24 rounded-lg shadow-xl shadow-cyan-200 text-gray-800"
     />
   );
 };
