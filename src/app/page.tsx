@@ -4,6 +4,7 @@ import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
 import { Section } from './homepage/Section';
 import { PricingSection } from './homepage/PricingSection';
+import { ContactUsForm } from './homepage/ContactUsForm';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -55,7 +56,7 @@ export default async function Home() {
                 return (
                   <div
                     className="bg-white border flex flex-col gap-y-4 rounded-md text-sm md:text-base py-4 px-8 max-h-96 overflow-y-auto"
-                    key={review.relative_time_description}
+                    key={`${review.author_name}_${review.relative_time_description}`}
                   >
                     <div className="flex gap-x-4 justify-between">
                       <div className="flex gap-x-4 items-center">
@@ -107,23 +108,7 @@ export default async function Home() {
           </p>
           <p>Send us a message and we&apos;ll call or email right back!</p>
         </div>
-        <form className="flex flex-col max-w-lg gap-y-4">
-          <label className="flex flex-col gap-y-1 self-start w-full">
-            Phone Number
-            <input className="py-1 px-2" type="tel" />
-          </label>
-          <label className="flex flex-col gap-y-1 self-start w-full">
-            Email Address
-            <input className="py-1 px-2" type="email" />
-          </label>
-          <label className="flex flex-col gap-y-1">
-            <p>Message</p>
-            <textarea className="box-border p-4 resize-none w-full" rows={12} cols={69} />
-          </label>
-          <button className="bg-cyan-200 px-6 py-2 rounded-sm text-cyan-900" type="submit">
-            Send Message
-          </button>
-        </form>
+        <ContactUsForm />
       </Section>
     </main>
   );
