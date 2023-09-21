@@ -1,11 +1,13 @@
+import Image from 'next/image';
+import { Toaster } from 'react-hot-toast';
+import logo from './favicon.ico';
 import { Carousel } from './homepage/Carousel';
 import { getReviews } from './homepage/google-places';
-import { fetchHomepage } from '../../sanity/lib/queries';
-import { urlForImage } from '../../sanity/lib/image';
 import { Section } from './homepage/Section';
 import { PricingSection } from './homepage/PricingSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
-import { Toaster } from 'react-hot-toast';
+import { fetchHomepage } from '../../sanity/lib/queries';
+import { urlForImage } from '../../sanity/lib/image';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -15,14 +17,12 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth">
-      <nav className="bg-cyan-50 flex px-2 sm:px-8 py-6 justify-between">
-        <p>Logo Here</p>
-        <div>
+      <nav className="bg-cyan-50 flex items-end px-2 sm:px-8 py-4 justify-between">
+        <Image alt="Pelican holding a surfboard" height={96} src={logo} />
+        <a href="tel:2397844935">
           <p className="text-cyan-600 text-xs text-center">Call or Text</p>
-          <a className="text-cyan-950" href="tel:2397844935">
-            (239) 784-4​935
-          </a>
-        </div>
+          <p className="text-cyan-950">(239) 784-4​935</p>
+        </a>
       </nav>
       <div className="relative">
         <Carousel
