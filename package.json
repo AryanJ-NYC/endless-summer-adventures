@@ -16,17 +16,14 @@
     "@sanity/types": "^3.0.0",
     "@sanity/ui": "^1.0.0",
     "@sanity/vision": "3",
-    "@types/node": "20.5.7",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.15",
+    "autoprefixer": "^10.4.15",
     "clsx": "^2.0.0",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
+    "eslint": "^8.48.0",
+    "eslint-config-next": "^13.4.19",
     "next": "^13.0.0",
-    "next-sanity": "5.4.6",
+    "next-sanity": "^5.4.6",
     "nodemailer": "^6.9.5",
-    "postcss": "8.4.29",
+    "postcss": "^8.4.29",
     "react": "^18.0.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
@@ -40,6 +37,9 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.10"
+    "@types/node": "^20.5.7",
+    "@types/nodemailer": "^6.4.10",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7"
   }
 }
