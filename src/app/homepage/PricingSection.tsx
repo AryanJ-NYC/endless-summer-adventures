@@ -4,7 +4,9 @@ import { Section } from './Section';
 export const PricingSection = () => {
   return (
     <Section className="space-y-12">
-      <p className="max-w-2xl font-medium text-3xl text-center tracking-wide uppercase">Pricing</p>
+      <p className="max-w-2xl font-medium text-3xl text-blue-900 text-center tracking-wider uppercase">
+        Pricing
+      </p>
       <div className="flex flex-col gap-y-6 md:flex-row md:justify-between items-center w-full max-w-5xl">
         <Card>
           <p className="border border-cyan-700 font-medium rounded-full text-sm text-center text-cyan-700">
@@ -46,7 +48,7 @@ export const PricingSection = () => {
           </div>
         </Card>
       </div>
-      <p className="max-w-sm">
+      <p className="max-w-sm text-blue-900 tracking-wide">
         All tackle, licensing, bait, bottled water, ice, and fish cleaning included in the price.
       </p>
     </Section>

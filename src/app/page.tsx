@@ -8,6 +8,7 @@ import { PricingSection } from './homepage/PricingSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
+import { Fragment } from 'react';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -16,7 +17,7 @@ export default async function Home() {
   const [homepage, reviews] = await Promise.all([fetchHomepage(), getReviews()]);
 
   return (
-    <main className="scroll-smooth">
+    <main className="scroll-smooth tracking-wide">
       <nav className="bg-cyan-50 flex items-end px-2 sm:px-8 py-4 justify-between">
         <Image alt="Pelican holding a surfboard" height={96} src={logo} />
         <a href="tel:2397844935">
@@ -25,9 +26,16 @@ export default async function Home() {
         </a>
       </nav>
       <div className="relative">
-        <Carousel
-          imgUrls={homepage.splash_images.map((slide) => urlForImage(slide).quality(90).url())}
-        />
+        <Carousel>
+          {homepage.splash_images
+            .map((slide) => urlForImage(slide).quality(90).url())
+            .map((imgUrl) => (
+              <div key={imgUrl}>
+                <img className="h-[66vh] object-cover" src={imgUrl} />
+                <div className="absolute top-0 bg-black opacity-60 h-full w-full" />
+              </div>
+            ))}
+        </Carousel>
         <div className="absolute flex flex-col justify-center items-center h-full gap-y-5 px-2 text-center text-white top-0 w-full">
           <h1 className="text-5xl sm:text-6xl tracking-wider uppercase">
             <span className="text-cyan-200">Endless</span>{' '}
@@ -96,12 +104,29 @@ export default async function Home() {
       </Section>
       <PricingSection />
       <Section className="gap-y-16">
-        <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wide uppercase">
+        <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wider uppercase">
           Meet Captain Nick Yacono
         </p>
         <img src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()} />
         <p className="text-lg max-w-xl text-orange-950">{homepage.meet_captain_nick_text}</p>
       </Section>
+      {homepage.boat_imgs?.length && homepage.boat_text && homepage.boat_title && (
+        <Section>
+          <div className="flex flex-col items-center gap-y-16">
+            <p className="max-w-2xl font-medium text-blue-900 text-3xl text-center tracking-wider uppercase">
+              {homepage.boat_title}
+            </p>
+            <Carousel className="max-w-3xl" showArrows>
+              {homepage.boat_imgs
+                .map((slide) => urlForImage(slide).quality(90).url())
+                .map((imgUrl) => (
+                  <img width={100} key={imgUrl} src={imgUrl} />
+                ))}
+            </Carousel>
+            <p className="max-w-lg text-blue-900 tracking-wide">{homepage.boat_text}</p>
+          </div>
+        </Section>
+      )}
       <Section id="contact-us">
         <div>
           <p className="max-w-2xl font-medium text-3xl text-center tracking-wide uppercase">

@@ -8,6 +8,9 @@ export const fetchHomepage = async () => {
   return homepage;
 };
 type Homepage = {
+  boat_text: string;
+  boat_title: string;
+  boat_imgs: Image[];
   meet_captain_nick_img: Image;
   meet_captain_nick_text: string;
   splash_images: Image[];
