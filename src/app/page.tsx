@@ -34,9 +34,9 @@ export default async function Home() {
             <span className="text-orange-200">Summer</span>{' '}
             <span className="text-cyan-200">Adventures</span>
           </h1>
-          <p className="max-w-lg text-cyan-50 text-2xl">
-            Dive into Marco Island&apos;s best fishing with Captain Nick at Endless Summer
-            Adventures!
+          <p className="max-w-lg text-cyan-50 text-2xl tracking-wide">
+            Dive into Marco Island&apos;s best fishing with Captain Nick Yacono&apos;s at Endless
+            Summer Adventures!
           </p>
           <a className="bg-cyan-200 px-6 py-2 rounded-sm text-cyan-900" href="#contact-us">
             Contact Us!
