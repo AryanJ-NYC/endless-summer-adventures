@@ -8,7 +8,6 @@ import { PricingSection } from './homepage/PricingSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
-import { Fragment } from 'react';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -127,6 +126,18 @@ export default async function Home() {
           </div>
         </Section>
       )}
+      <Section>
+        <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wider uppercase">
+          {homepage.gallery_title}
+        </p>
+        <Carousel className="max-w-3xl" showArrows>
+          {homepage.gallery
+            ?.map((img) => urlForImage(img).quality(90).url())
+            .map((imgUrl) => (
+              <img width={100} key={imgUrl} src={imgUrl} />
+            ))}
+        </Carousel>
+      </Section>
       <Section id="contact-us">
         <div>
           <p className="max-w-2xl font-medium text-3xl text-center tracking-wide uppercase">

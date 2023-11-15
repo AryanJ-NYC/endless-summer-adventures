@@ -25,6 +25,13 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           title: 'Boat Images',
           of: [{ type: 'image', options: { hotspot: true } }],
         },
+        { name: 'gallery_title', type: 'string', title: 'Gallery Title' },
+        {
+          name: 'gallery',
+          type: 'array',
+          title: 'Gallery',
+          of: [{ type: 'image', options: { hotspot: true } }],
+        },
       ],
       name: 'homepage',
       title: 'Homepage',
