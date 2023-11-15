@@ -13,6 +13,7 @@ type Homepage = {
   boat_imgs: Image[];
   gallery_title: string;
   gallery: Image[];
+  marketing_blurb: string;
   meet_captain_nick_img: Image;
   meet_captain_nick_text: string;
   splash_images: Image[];

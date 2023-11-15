@@ -10,6 +10,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           title: 'Splash Images',
           type: 'array',
         },
+        { name: 'marketing_blurb', type: 'string', title: 'Marketing Blurb' },
         {
           name: 'meet_captain_nick_img',
           options: { hotspot: true },

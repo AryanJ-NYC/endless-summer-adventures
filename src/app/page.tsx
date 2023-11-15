@@ -42,8 +42,8 @@ export default async function Home() {
             <span className="text-cyan-200">Adventures</span>
           </h1>
           <p className="max-w-lg text-cyan-50 text-2xl tracking-wide">
-            Dive into Marco Island&apos;s best fishing with Captain Nick Yacono&apos;s at Endless
-            Summer Adventures!
+            Dive into Marco Island&apos;s best fishing with Captain Nick Yacono at Endless Summer
+            Adventures!
           </p>
           <a className="bg-cyan-200 px-6 py-2 rounded-sm text-cyan-900" href="#contact-us">
             Contact Us!
@@ -52,7 +52,7 @@ export default async function Home() {
       </div>
       <Section>
         <p className="max-w-2xl font-medium text-orange-950 text-3xl text-center tracking-wide uppercase">
-          The best fishing charters in Marco Island, Isles of Capri and all Southwest Florida
+          {homepage.marketing_blurb}
         </p>
         {reviews.length ? (
           <div className="flex flex-col items-center gap-y-6 py-8">
