@@ -130,7 +130,7 @@ export default async function Home() {
         <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wider uppercase">
           {homepage.gallery_title}
         </p>
-        <Carousel className="max-w-3xl" showArrows>
+        <Carousel className="max-w-3xl" showArrows showThumbs>
           {homepage.gallery
             ?.map((img) => urlForImage(img).quality(90).url())
             .map((imgUrl) => (
