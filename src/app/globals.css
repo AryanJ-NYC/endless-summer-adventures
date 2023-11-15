@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.thumbs {
+  @apply flex flex-wrap justify-center gap-4;
+  transform: none !important;
+}

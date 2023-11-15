@@ -10,7 +10,7 @@ export const Carousel = (props: Partial<React.ComponentProps<typeof ImportedCaro
       autoPlay
       infiniteLoop
       {...props}
-      interval={props.interval ?? 5_000}
+      interval={props.interval ?? 2_000}
       showArrows={props.showArrows ?? false}
       showIndicators={props.showIndicators ?? false}
       showStatus={props.showStatus ?? false}

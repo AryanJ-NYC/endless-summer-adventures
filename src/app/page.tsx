@@ -25,7 +25,7 @@ export default async function Home() {
         </a>
       </nav>
       <div className="relative">
-        <Carousel>
+        <Carousel interval={5_000}>
           {homepage.splash_images
             .map((slide) => urlForImage(slide).quality(90).url())
             .map((imgUrl) => (
@@ -115,11 +115,11 @@ export default async function Home() {
             <p className="max-w-2xl font-medium text-blue-900 text-3xl text-center tracking-wider uppercase">
               {homepage.boat_title}
             </p>
-            <Carousel className="max-w-3xl" showArrows>
+            <Carousel className="max-w-3xl" showArrows showThumbs>
               {homepage.boat_imgs
                 .map((slide) => urlForImage(slide).quality(90).url())
                 .map((imgUrl) => (
-                  <img width={100} key={imgUrl} src={imgUrl} />
+                  <img key={imgUrl} src={imgUrl} />
                 ))}
             </Carousel>
             <p className="max-w-lg text-blue-900 tracking-wide">{homepage.boat_text}</p>
@@ -134,7 +134,7 @@ export default async function Home() {
           {homepage.gallery
             ?.map((img) => urlForImage(img).quality(90).url())
             .map((imgUrl) => (
-              <img width={100} key={imgUrl} src={imgUrl} />
+              <img key={imgUrl} src={imgUrl} />
             ))}
         </Carousel>
       </Section>
