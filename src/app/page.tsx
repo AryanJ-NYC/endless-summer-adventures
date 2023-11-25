@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
+import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import logo from './favicon.ico';
 import { Carousel } from './homepage/Carousel';
 import { getReviews } from './homepage/google-places';
@@ -139,13 +140,39 @@ export default async function Home() {
         </Carousel>
       </Section>
       <Section id="contact-us">
-        <div>
-          <p className="max-w-2xl font-medium text-3xl text-center tracking-wide uppercase">
-            Contact Us
-          </p>
-          <p>Send us a message and we&apos;ll call or email right back!</p>
+        <div className="flex flex-col gap-y-12 w-full">
+          <div className="flex flex-col gap-y-1 w-full">
+            <p className="max-w-2xl font-medium text-3xl tracking-wide uppercase">Contact Us</p>
+            <p className="max-w-xs">
+              Ready to book? Contact us via message, call, or email and we&apos;ll get back to you
+              soon!
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row gap-12 items-center w-full">
+            <ContactUsForm />
+            <div className="grid grid-cols-1 gap-y-6 xl:grid-cols-2 gap-x-24 self-start">
+              <a
+                className="flex flex-col gap-y-0.5"
+                href="mailto:nick@endless-summer-adventures.com"
+              >
+                <span className="text-orange-800 text-3xl">
+                  <AiOutlineMail />
+                </span>
+                <p className="font-bold">Email</p>
+                <p className="text-sm underline underline-offset-2">
+                  nick@endless-summer-adventures.com
+                </p>
+              </a>
+              <a className="flex flex-col gap-y-0.5" href="tel:+12397844935">
+                <span className="text-orange-800 text-3xl">
+                  <AiOutlinePhone />
+                </span>
+                <p className="font-bold">Phone</p>
+                <p className="text-sm underline underline-offset-2">(239) 784&ndash;4935</p>
+              </a>
+            </div>
+          </div>
         </div>
-        <ContactUsForm />
       </Section>
       <Toaster />
     </main>

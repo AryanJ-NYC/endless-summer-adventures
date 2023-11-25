@@ -24,7 +24,7 @@ export const ContactUsForm = () => {
   });
 
   return (
-    <form className="flex flex-col max-w-lg gap-y-4" onSubmit={onSubmit}>
+    <form className="flex flex-col gap-y-4" onSubmit={onSubmit}>
       <label className="flex flex-col gap-y-1 self-start w-full">
         Phone Number
         <input className="py-1 px-2" {...register('telephoneNumber')} type="tel" />
