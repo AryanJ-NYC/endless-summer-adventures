@@ -104,11 +104,20 @@ export default async function Home() {
       </Section>
       <PricingSection />
       <Section className="gap-y-16">
-        <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wider uppercase">
-          Meet Captain Nick Yacono
-        </p>
-        <img src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()} />
-        <p className="text-lg max-w-xl text-orange-950">{homepage.meet_captain_nick_text}</p>
+        <div className="flex justify-center w-full">
+          <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 w-full">
+            <div className="md:col-span-2 lg:col-span-1">
+              <p className="max-w-2xl font-medium text-orange-900 text-3xl tracking-wider uppercase">
+                Meet Captain Nick Yacono
+              </p>
+              <p className="text-lg max-w-2xl text-orange-950">{homepage.meet_captain_nick_text}</p>
+            </div>
+            <img
+              className="md:col-span-3 lg:col-span-1 w-full"
+              src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()}
+            />
+          </div>
+        </div>
       </Section>
       {homepage.boat_imgs?.length && homepage.boat_text && homepage.boat_title && (
         <Section>
