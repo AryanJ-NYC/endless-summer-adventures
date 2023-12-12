@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   });
 
   const body = await request.json();
-  const parsedBody = messageSchema.parse(body);
+  const parsedBody = await messageSchema.parseAsync(body);
 
   let text = "You've received a new customer inquiry.";
   if (parsedBody.emailAddress) {
@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
 
   await transporter.sendMail({
     from: '"Captain Nick" <nick@endless-summer-adventures.com>',
+    replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
     to: 'captnick2660@aol.com',
     subject: 'New Customer Inquiry',
     text: text,
