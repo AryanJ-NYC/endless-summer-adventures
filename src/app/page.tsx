@@ -34,7 +34,7 @@ export default async function Home() {
               </div>
             ))}
         </Carousel>
-        <div className="absolute flex flex-col justify-center items-center h-full gap-y-5 px-2 text-center text-white top-0 w-full">
+        <div className="absolute flex flex-col justify-center items-center h-full gap-y-8 px-2 text-center text-white top-0 w-full">
           <h1 className="text-5xl sm:text-6xl tracking-wider uppercase">
             <span className="text-cyan-200">Endless</span>{' '}
             <span className="text-orange-200">Summer</span>{' '}
@@ -44,7 +44,10 @@ export default async function Home() {
             Dive into Marco Island&apos;s best fishing with Captain Nick Yacono at Endless Summer
             Adventures!
           </p>
-          <a className="bg-cyan-200 px-6 py-2 rounded-sm text-cyan-900" href="#contact-us">
+          <a
+            className="bg-cyan-200 shadow-2xl shadow-black px-8 py-4 rounded-sm text-cyan-900 text-3xl tracking-wide"
+            href="#contact-us"
+          >
             Contact Us!
           </a>
         </div>
@@ -104,7 +107,7 @@ export default async function Home() {
       <Section className="gap-y-16">
         <div className="flex justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 w-full">
-            <div className="md:col-span-2 lg:col-span-1">
+            <div className="md:col-span-2 lg:col-span-1 gap-y-8">
               <p className="max-w-2xl font-medium text-orange-900 text-3xl tracking-wider uppercase">
                 Meet Captain Nick Yacono
               </p>

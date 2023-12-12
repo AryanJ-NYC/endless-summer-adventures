@@ -50,6 +50,7 @@ export const PricingSection = () => {
       </div>
       <p className="max-w-sm text-blue-900 tracking-wide">
         All tackle, licensing, bait, bottled water, ice, and fish cleaning included in the price.
+        Prices include up to <span className="font-semibold">three adults</span>.
       </p>
     </Section>
   );
