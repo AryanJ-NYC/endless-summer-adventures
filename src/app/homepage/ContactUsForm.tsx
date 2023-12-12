@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import ReactGA from 'react-ga4';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -15,6 +16,11 @@ export const ContactUsForm = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    ReactGA.event({
+      action: 'submit',
+      category: 'Contact Us',
+      label: 'Contact Us Form',
+    });
     await fetch('/api/send-message', {
       body: JSON.stringify(data),
       method: 'POST',

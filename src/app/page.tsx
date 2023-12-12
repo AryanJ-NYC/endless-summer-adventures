@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
-import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import logo from './favicon.ico';
 import { Carousel } from './homepage/Carousel';
 import { getReviews } from './homepage/google-places';
@@ -9,6 +8,8 @@ import { PricingSection } from './homepage/PricingSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
+import { CallOrText } from './homepage/CallOrText';
+import { ContactUsInfo } from './homepage/ContactUsInfo';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -20,10 +21,7 @@ export default async function Home() {
     <main className="scroll-smooth tracking-wide">
       <nav className="bg-cyan-50 flex items-end px-2 sm:px-8 py-4 justify-between">
         <Image alt="Pelican holding a surfboard" height={96} src={logo} />
-        <a href="tel:2397844935">
-          <p className="text-cyan-600 text-xs text-center">Call or Text</p>
-          <p className="text-cyan-950">(239) 784-4​935</p>
-        </a>
+        <CallOrText />
       </nav>
       <div className="relative">
         <Carousel interval={5_000}>
@@ -137,10 +135,10 @@ export default async function Home() {
         </Section>
       )}
       <Section>
-        <p className="max-w-2xl font-medium text-orange-900 text-3xl text-center tracking-wider uppercase">
+        <p className="max-w-2xl font-medium text-blue-900 text-3xl text-center tracking-wider uppercase">
           {homepage.gallery_title}
         </p>
-        <Carousel className="max-w-3xl" showArrows showThumbs>
+        <Carousel className="max-w-3xl" showArrows showIndicators>
           {homepage.gallery
             ?.map((img) => urlForImage(img).quality(90).url())
             .map((imgUrl) => (
@@ -159,27 +157,7 @@ export default async function Home() {
           </div>
           <div className="flex flex-col md:flex-row gap-12 items-center w-full">
             <ContactUsForm />
-            <div className="grid grid-cols-1 gap-y-6 xl:grid-cols-2 gap-x-24 self-start">
-              <a
-                className="flex flex-col gap-y-0.5"
-                href="mailto:nick@endless-summer-adventures.com"
-              >
-                <span className="text-orange-800 text-3xl">
-                  <AiOutlineMail />
-                </span>
-                <p className="font-bold">Email</p>
-                <p className="text-sm underline underline-offset-2">
-                  nick@endless-summer-adventures.com
-                </p>
-              </a>
-              <a className="flex flex-col gap-y-0.5" href="tel:+12397844935">
-                <span className="text-orange-800 text-3xl">
-                  <AiOutlinePhone />
-                </span>
-                <p className="font-bold">Phone</p>
-                <p className="text-sm underline underline-offset-2">(239) 784&ndash;4935</p>
-              </a>
-            </div>
+            <ContactUsInfo />
           </div>
         </div>
       </Section>
