@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
 import logo from './favicon.ico';
 import { Carousel } from './homepage/Carousel';
-import { getReviews } from './homepage/google-places';
+import { getReviews } from './homepage/lib/google-places';
 import { Section } from './homepage/Section';
 import { PricingSection } from './homepage/PricingSection';
 import { ContactUsForm } from './homepage/ContactUsForm';

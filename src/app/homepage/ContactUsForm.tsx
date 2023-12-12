@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { messageSchema } from '../api/send-message/Message';
+import { messasgeConversion } from './lib/gtagEventTrackers';
 
 export const ContactUsForm = () => {
   const { formState, handleSubmit, register, reset } = useForm({
@@ -16,11 +17,7 @@ export const ContactUsForm = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    ReactGA.event({
-      action: 'submit',
-      category: 'Contact Us',
-      label: 'Contact Us Form',
-    });
+    messasgeConversion();
     await fetch('/api/send-message', {
       body: JSON.stringify(data),
       method: 'POST',

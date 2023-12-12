@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import ReactGA from 'react-ga4';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
+import { emailConversion, phoneConversion } from './lib/gtagEventTrackers';
 
 export const ContactUsInfo = () => {
   return (
@@ -10,7 +10,7 @@ export const ContactUsInfo = () => {
       <a
         className="flex flex-col gap-y-0.5"
         href="mailto:nick@endless-summer-adventures.com"
-        onClick={() => ReactGA.event({ action: 'email click', category: 'Contact Us' })}
+        onClick={emailConversion}
       >
         <span className="text-orange-800 text-3xl">
           <AiOutlineMail />
@@ -18,11 +18,7 @@ export const ContactUsInfo = () => {
         <p className="font-bold">Email</p>
         <p className="text-sm underline underline-offset-2">nick@endless-summer-adventures.com</p>
       </a>
-      <a
-        className="flex flex-col gap-y-0.5"
-        href="tel:+12397844935"
-        onClick={() => ReactGA.event({ action: 'telephone click', category: 'Contact Us' })}
-      >
+      <a className="flex flex-col gap-y-0.5" href="tel:+12397844935" onClick={phoneConversion}>
         <span className="text-orange-800 text-3xl">
           <AiOutlinePhone />
         </span>
