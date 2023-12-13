@@ -4,8 +4,8 @@ import { messageSchema } from './Message';
 
 export async function POST(request: NextRequest) {
   const transporter = nodemailer.createTransport({
-    auth: { pass: process.env.SENDGRID_API_KEY, user: 'apikey' },
-    host: 'smtp.sendgrid.net',
+    auth: { pass: process.env.AWS_SES_SMTP_PW, user: 'AKIA3WDZYAIPJW4VPWEW' },
+    host: 'email-smtp.us-east-2.amazonaws.com',
     port: 465,
     secure: true,
   });
@@ -22,13 +22,23 @@ export async function POST(request: NextRequest) {
   }
   text += `\n\nMessage: ${parsedBody.message}`;
 
-  await transporter.sendMail({
-    from: '"Captain Nick" <nick@endless-summer-adventures.com>',
-    replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
-    to: 'captnick2660@aol.com',
-    subject: 'New Customer Inquiry',
-    text: text,
-  });
+  await Promise.all([
+    transporter.sendMail({
+      from: '"Captain Nick" <nick@endless-summer-adventures.com>',
+      replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
+      to: 'captnick2660@aol.com',
+      subject: 'New Customer Inquiry',
+      text,
+    }),
+
+    transporter.sendMail({
+      from: '"Captain Nick" <nick@endless-summer-adventures.com>',
+      replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
+      to: 'aryanjabbari@gmail.com',
+      subject: 'New Customer Inquiry',
+      text,
+    }),
+  ]);
 
   return new NextResponse('OK');
 }

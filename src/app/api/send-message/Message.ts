@@ -9,6 +9,10 @@ export const messageSchema = z
   .refine((input) => input.emailAddress || input.telephoneNumber, {
     message: 'Either an email address or a telephone number is required.',
     path: ['form'],
+  })
+  .refine((i) => i.message.length, {
+    message: 'A message is required.',
+    path: ['form'],
   });
 
 export type Message = z.infer<typeof messageSchema>;
