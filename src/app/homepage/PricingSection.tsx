@@ -4,9 +4,12 @@ import { Section } from './Section';
 export const PricingSection = () => {
   return (
     <Section className="space-y-12">
-      <p className="max-w-2xl font-medium text-3xl text-blue-900 text-center tracking-wider uppercase">
-        Pricing
-      </p>
+      <div>
+        <p className="max-w-2xl font-medium text-3xl text-blue-900 text-center tracking-wider uppercase">
+          Pricing
+        </p>
+        <p></p>
+      </div>
       <div className="flex flex-col gap-y-6 md:flex-row md:justify-between items-center w-full max-w-5xl">
         <Card>
           <p className="border border-cyan-700 font-medium rounded-full text-sm text-center text-cyan-700">
@@ -48,10 +51,15 @@ export const PricingSection = () => {
           </div>
         </Card>
       </div>
-      <p className="max-w-sm text-blue-900 tracking-wide">
-        All tackle, licensing, bait, bottled water, ice, and fish cleaning included in the price.
-        Prices include up to <span className="font-semibold">three adults</span>.
-      </p>
+      <div className="flex flex-col gap-y-2 max-w-sm text-blue-900 tracking-wide">
+        <p>Our prices cover everything: tackle, license, bait, water, ice, and fish cleaning.</p>
+        <p>
+          The base fare includes <span className="font-semibold">two guests</span>. For the 3rd and
+          4th passengers, a nominal fee of <span className="font-semibold">$25 each</span> applies,
+          while children under 7 join for free. Please note the total weight limit for passengers is{' '}
+          <span className="font-semibold">750 pounds</span>.
+        </p>
+      </div>
     </Section>
   );
 };
