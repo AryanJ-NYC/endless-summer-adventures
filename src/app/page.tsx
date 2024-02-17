@@ -19,8 +19,7 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth tracking-wide">
-      <nav className="bg-cyan-50 flex items-end px-2 sm:px-8 py-4 justify-between">
-        <Image alt="Pelican holding a surfboard" height={96} src={logo} />
+      <nav className="bg-cyan-50 flex items-end px-2 sm:px-8 py-4 justify-end">
         <CallOrText />
       </nav>
       <div className="relative">
@@ -168,3 +167,5 @@ export default async function Home() {
     </main>
   );
 }
+
+export const revalidate = 3600; // revalidate at most every hour

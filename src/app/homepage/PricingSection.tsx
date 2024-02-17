@@ -8,7 +8,6 @@ export const PricingSection = () => {
         <p className="max-w-2xl font-medium text-3xl text-blue-900 text-center tracking-wider uppercase">
           Pricing
         </p>
-        <p></p>
       </div>
       <div className="flex flex-col gap-y-6 md:flex-row md:justify-between items-center w-full max-w-5xl">
         <Card>
@@ -19,10 +18,6 @@ export const PricingSection = () => {
             <p>🐟 Live bait 🐟</p>
             <p className="text-2xl">$450</p>
           </div>
-          <div className="text-center">
-            <p className="text-xs">Artifical bait</p>
-            <p className="text-xl">$400</p>
-          </div>
         </Card>
         <Card>
           <p className="border border-cyan-700 font-medium rounded-full text-sm text-center text-cyan-700">
@@ -30,11 +25,7 @@ export const PricingSection = () => {
           </p>
           <div className="text-center">
             <p>🐟 Live bait 🐟</p>
-            <p className="text-2xl">$625</p>
-          </div>
-          <div className="text-center">
-            <p className="text-xs">Artifical bait</p>
-            <p className="text-xl">$550</p>
+            <p className="text-2xl">$650</p>
           </div>
         </Card>
         <Card>
@@ -43,11 +34,7 @@ export const PricingSection = () => {
           </p>
           <div className="text-center">
             <p>🐟 Live bait 🐟</p>
-            <p className="text-2xl">$750</p>
-          </div>
-          <div className="text-center">
-            <p className="text-xs">Artifical bait</p>
-            <p className="text-xl">$650</p>
+            <p className="text-2xl">$800</p>
           </div>
         </Card>
       </div>
