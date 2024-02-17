@@ -19,38 +19,34 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth tracking-wide">
-      <nav className="bg-cyan-50 flex items-end px-2 sm:px-8 py-4 justify-end">
-        <CallOrText />
-      </nav>
-      <div className="relative">
-        <Carousel interval={5_000}>
-          {homepage.splash_images
-            .map((slide) => urlForImage(slide).quality(90).url())
-            .map((imgUrl) => (
-              <div key={imgUrl}>
-                <img className="h-[66vh] object-cover" src={imgUrl} />
-                <div className="absolute top-0 bg-black opacity-60 h-full w-full" />
-              </div>
-            ))}
-        </Carousel>
-        <div className="absolute flex flex-col justify-center items-center h-full gap-y-8 px-2 text-center text-white top-0 w-full">
-          <h1 className="text-5xl sm:text-6xl tracking-wider uppercase">
-            <span className="text-cyan-200">Endless</span>{' '}
-            <span className="text-orange-200">Summer</span>{' '}
-            <span className="text-cyan-200">Adventures</span>
+      <Section className="flex flex-col md:flex-row justify-end gap-16">
+        <div className="flex flex-col 2xl:flex-grow 2xl:flex-shrink-0 justify-center items-center gap-y-8 text-center max-w-3xl">
+          <h1 className="text-5xl lg:text-6xl text-cyan-700 tracking-wider uppercase">
+            Endless Summer Adventures
           </h1>
-          <p className="max-w-lg text-cyan-50 text-2xl tracking-wide">
+          <p className="max-w-lg text-cyan-600 text-xl lg:text-2xl tracking-wide">
             Dive into Marco Island&apos;s best fishing with Captain Nick Yacono at Endless Summer
             Adventures!
           </p>
           <a
-            className="bg-cyan-200 shadow-2xl shadow-black px-8 py-4 rounded-sm text-cyan-900 text-3xl tracking-wide"
+            className="bg-cyan-200 shadow-lg shadow-cyan-900 px-8 py-4 rounded-sm text-cyan-900 text-3xl tracking-wide"
             href="#contact-us"
           >
             Contact Us!
           </a>
         </div>
-      </div>
+        <Carousel interval={5_000}>
+          {homepage.splash_images
+            .map((slide) => urlForImage(slide).quality(90).url())
+            .map((imgUrl) => (
+              <img
+                className="max-h-fit flex-grow object-contain rounded-lg"
+                key={imgUrl}
+                src={imgUrl}
+              />
+            ))}
+        </Carousel>
+      </Section>
       <Section>
         <p className="max-w-2xl font-medium text-orange-950 text-3xl text-center tracking-wide uppercase">
           {homepage.marketing_blurb}
@@ -119,23 +115,6 @@ export default async function Home() {
           </div>
         </div>
       </Section>
-      {homepage.boat_imgs?.length && homepage.boat_text && homepage.boat_title && (
-        <Section>
-          <div className="flex flex-col items-center gap-y-16">
-            <p className="max-w-2xl font-medium text-blue-900 text-3xl text-center tracking-wider uppercase">
-              {homepage.boat_title}
-            </p>
-            <Carousel className="max-w-3xl" showArrows showThumbs>
-              {homepage.boat_imgs
-                .map((slide) => urlForImage(slide).quality(90).url())
-                .map((imgUrl) => (
-                  <img key={imgUrl} src={imgUrl} />
-                ))}
-            </Carousel>
-            <p className="max-w-lg text-blue-900 tracking-wide">{homepage.boat_text}</p>
-          </div>
-        </Section>
-      )}
       <Section>
         <p className="max-w-2xl font-medium text-blue-900 text-3xl text-center tracking-wider uppercase">
           {homepage.gallery_title}

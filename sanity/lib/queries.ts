@@ -8,9 +8,6 @@ export const fetchHomepage = async () => {
   return homepage;
 };
 type Homepage = {
-  boat_text: string;
-  boat_title: string;
-  boat_imgs: Image[];
   gallery_title: string;
   gallery: Image[];
   marketing_blurb: string;
