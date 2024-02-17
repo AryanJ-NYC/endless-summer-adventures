@@ -127,19 +127,17 @@ export default async function Home() {
             ))}
         </Carousel>
       </Section>
-      <Section id="contact-us">
-        <div className="flex flex-col gap-y-12 w-full">
-          <div className="flex flex-col gap-y-1 w-full">
-            <p className="max-w-2xl font-medium text-3xl tracking-wide uppercase">Contact Us</p>
-            <p className="max-w-sm">
-              Ready to book? Contact us via message, call, or email and we&apos;ll get back to you
-              soon!
-            </p>
-          </div>
-          <div className="flex flex-col md:flex-row gap-12 items-center w-full">
-            <ContactUsForm />
-            <ContactUsInfo />
-          </div>
+      <Section className="flex flex-col gap-y-12 w-full" id="contact-us">
+        <div className="flex flex-col gap-y-1 w-full">
+          <p className="max-w-2xl font-medium text-3xl tracking-wide uppercase">Contact Us</p>
+          <p className="max-w-sm">
+            Ready to book? Contact us via message, call, or email and we&apos;ll get back to you
+            soon!
+          </p>
+        </div>
+        <div className="flex flex-col md:flex-row gap-12 items-center w-full">
+          <ContactUsForm />
+          <ContactUsInfo />
         </div>
       </Section>
       <Toaster />
