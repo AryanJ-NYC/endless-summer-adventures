@@ -60,7 +60,7 @@ export default async function Home() {
             <p className="font-semibold text-center text-blue-900 text-xl tracking-widest uppercase">
               Top-Rated on Google
             </p>
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-3">
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {reviews.map((review) => {
                 return (
                   <div
