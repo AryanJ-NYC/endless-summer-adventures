@@ -99,33 +99,32 @@ export default async function Home() {
         ) : null}
       </Section>
       <PricingSection />
-      <Section className="gap-y-16">
-        <div className="flex justify-center w-full">
-          <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 w-full">
-            <div className="md:col-span-2 lg:col-span-1 gap-y-8">
-              <p className="max-w-2xl font-medium text-orange-900 text-3xl tracking-wider uppercase">
-                Meet Captain Nick Yacono
-              </p>
-              <p className="text-lg max-w-2xl text-orange-950">{homepage.meet_captain_nick_text}</p>
-            </div>
-            <img
-              className="md:col-span-3 lg:col-span-1 w-full"
-              src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()}
-            />
-          </div>
+      <Section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 justify-center w-full">
+        <div className="md:col-span-2 lg:col-span-1 space-y-6">
+          <p className="max-w-2xl font-medium text-orange-900 text-3xl tracking-wider uppercase">
+            Meet Captain Nick Yacono
+          </p>
+          <p className="text-lg max-w-2xl text-orange-950">{homepage.meet_captain_nick_text}</p>
         </div>
+        <img
+          className="md:col-span-3 lg:col-span-1 w-full"
+          src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()}
+        />
       </Section>
-      <Section>
-        <p className="max-w-2xl font-medium text-blue-900 text-3xl text-center tracking-wider uppercase">
-          {homepage.gallery_title}
-        </p>
-        <Carousel className="max-w-3xl" showArrows showIndicators>
+      <Section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 w-full">
+        <Carousel className="max-w-3xl order-2" showArrows showIndicators>
           {homepage.gallery
             ?.map((img) => urlForImage(img).quality(90).url())
             .map((imgUrl) => (
               <img key={imgUrl} src={imgUrl} />
             ))}
         </Carousel>
+        <div className="flex flex-col items-center md:col-span-2 lg:col-span-1 space-y-6 sm:order-3 text-left md:text-center">
+          <p className="max-w-xl font-medium text-blue-900 text-3xl tracking-wider uppercase">
+            {homepage.gallery_title}
+          </p>
+          <p className="max-w-xl text-blue-800 text-lg">{homepage.gallery_caption}</p>
+        </div>
       </Section>
       <Section className="flex flex-col gap-y-12 w-full" id="contact-us">
         <div className="flex flex-col gap-y-1 w-full">
