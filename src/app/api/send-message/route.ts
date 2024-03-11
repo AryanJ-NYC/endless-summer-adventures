@@ -22,23 +22,21 @@ export async function POST(request: NextRequest) {
   }
   text += `\n\nMessage: ${parsedBody.message}`;
 
-  await Promise.all([
-    transporter.sendMail({
-      from: '"Captain Nick" <nick@endless-summer-adventures.com>',
-      replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
-      to: 'captnick2660@aol.com',
-      subject: 'New Customer Inquiry',
-      text,
-    }),
-
-    transporter.sendMail({
-      from: '"Captain Nick" <nick@endless-summer-adventures.com>',
-      replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
-      to: 'aryanjabbari@gmail.com',
-      subject: 'New Customer Inquiry',
-      text,
-    }),
-  ]);
+  try {
+    await Promise.allSettled(
+      ['captnick2660@aol.com', 'aryanjabbari@gmail.com', '2397844935@vtext.com'].map((to) =>
+        transporter.sendMail({
+          from: '"Captain Nick" <nick@endless-summer-adventures.com>',
+          replyTo: parsedBody.emailAddress ?? 'captnick2660@aol.com',
+          to,
+          subject: 'New Customer Inquiry',
+          text,
+        })
+      )
+    );
+  } catch (e) {
+    console.error(e);
+  }
 
   return new NextResponse('OK');
 }
