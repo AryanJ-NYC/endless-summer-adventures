@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
-import logo from './favicon.ico';
 import { Carousel } from './homepage/Carousel';
 import { getReviews } from './homepage/lib/google-places';
 import { Section } from './homepage/Section';
@@ -8,7 +6,6 @@ import { PricingSection } from './homepage/PricingSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
-import { CallOrText } from './homepage/CallOrText';
 import { ContactUsInfo } from './homepage/ContactUsInfo';
 
 const googleReviewsUrl =
@@ -19,124 +16,185 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth tracking-wide">
-      <Section className="flex flex-col md:flex-row justify-end gap-16">
-        <div className="flex flex-col 2xl:flex-grow 2xl:flex-shrink-0 justify-center items-center gap-y-8 text-center max-w-3xl">
-          <h1 className="text-5xl lg:text-6xl text-cyan-700 tracking-wider uppercase">
-            Endless Summer Adventures
-          </h1>
-          <p className="max-w-lg text-cyan-600 text-xl lg:text-2xl tracking-wide">
-            Dive into Marco Island&apos;s best fishing with Captain Nick Yacono at Endless Summer
-            Adventures!
-          </p>
-          <a
-            className="bg-cyan-200 shadow-lg shadow-cyan-900 px-8 py-4 rounded-sm text-cyan-900 text-3xl tracking-wide"
-            href="#contact-us"
-          >
-            Contact Us!
-          </a>
-        </div>
-        <Carousel interval={5_000}>
-          {homepage.splash_images
-            .map((slide) => urlForImage(slide).quality(90).url())
-            .map((imgUrl) => (
-              <img
-                className="max-h-fit flex-grow object-contain rounded-lg"
-                key={imgUrl}
-                src={imgUrl}
-              />
-            ))}
-        </Carousel>
-      </Section>
-      <Section>
-        <p className="max-w-2xl font-medium text-orange-950 text-3xl text-center tracking-wide uppercase">
-          {homepage.marketing_blurb}
-        </p>
-        {reviews.length ? (
-          <div className="flex flex-col items-center gap-y-6 py-8">
-            <p className="font-semibold text-center text-blue-900 text-xl tracking-widest uppercase">
-              Top-Rated on Google
+      <Section className="relative flex items-center bg-gradient-to-b from-sky-50 via-blue-50 to-white">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
+          <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-8 lg:max-w-2xl">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-blue-900 tracking-tight leading-tight">
+              Endless Summer Adventures
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-700 max-w-xl leading-relaxed">
+              Experience Marco Island&apos;s premier fishing charters with Captain Nick Yacono
             </p>
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {reviews.map((review) => {
-                return (
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href="#contact-us"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl px-10 py-5 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200"
+              >
+                Book Your Adventure
+              </a>
+              <a
+                href="tel:+12397844935"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                Call Now
+              </a>
+            </div>
+          </div>
+          <div className="w-full lg:flex-1 max-w-2xl">
+            <Carousel interval={5_000} className="rounded-2xl overflow-hidden shadow-2xl">
+              {homepage.splash_images
+                .slice(0, 7)
+                .map((slide) => urlForImage(slide).quality(90).url())
+                .map((imgUrl) => (
+                  <img
+                    className="w-full h-full object-cover"
+                    key={imgUrl}
+                    src={imgUrl}
+                    alt="Fishing adventure"
+                  />
+                ))}
+            </Carousel>
+          </div>
+        </div>
+      </Section>
+      <Section className="bg-stone-50 py-16 md:py-24">
+        <div className="flex flex-col items-center gap-12 max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 text-center max-w-3xl leading-tight">
+            {homepage.marketing_blurb}
+          </h2>
+          {reviews.length ? (
+            <div className="w-full flex flex-col gap-12">
+              <h3 className="text-2xl font-bold text-slate-800 text-center">
+                What Our Anglers Say
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reviews.map((review) => (
                   <div
-                    className="bg-white border flex flex-col gap-y-4 rounded-md text-sm md:text-base py-4 px-8 max-h-96 overflow-y-auto"
                     key={`${review.author_name}_${review.relative_time_description}`}
+                    className="bg-white border border-slate-200 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-200"
                   >
-                    <div className="flex gap-x-4 justify-between">
-                      <div className="flex gap-x-4 items-center">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
                         <img
-                          className="h-8 w-8"
+                          className="h-10 w-10 rounded-full"
                           referrerPolicy="no-referrer"
                           src={review.profile_photo_url}
+                          alt={review.author_name}
                         />
                         <div>
-                          <p className="text-gray-800">{review.author_name}</p>
-                          <p className="text-gray-500 text-xs">
+                          <p className="font-semibold text-slate-800">{review.author_name}</p>
+                          <p className="text-xs text-slate-500">
                             {review.relative_time_description}
                           </p>
                         </div>
                       </div>
-                      <div className="flex gap-x-1 self-end">
+                      <div className="flex gap-0.5">
                         {new Array(review.rating).fill(null).map((_, i) => (
-                          <p key={`review_${i}`}>⭐</p>
+                          <span key={`review_${i}`} className="text-amber-400 text-lg">
+                            ★
+                          </span>
                         ))}
                       </div>
                     </div>
-                    <p className="text-gray-800">{review.text}</p>
+                    <p className="text-slate-700 text-sm leading-relaxed line-clamp-4">
+                      {review.text}
+                    </p>
                   </div>
-                );
-              })}
+                ))}
+              </div>
+              <div className="text-center">
+                <a
+                  href={googleReviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200"
+                >
+                  Read All Reviews
+                </a>
+              </div>
             </div>
-            <a
-              className="bg-cyan-200 px-6 py-2 rounded-sm text-cyan-900"
-              href={googleReviewsUrl}
-              target="_blank"
-            >
-              Read all Google Reviews
-            </a>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
       </Section>
       <PricingSection />
-      <Section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 justify-center w-full">
-        <div className="md:col-span-2 lg:col-span-1 space-y-6">
-          <p className="max-w-2xl font-medium text-orange-900 text-3xl tracking-wider uppercase">
-            Meet Captain Nick Yacono
-          </p>
-          <p className="text-lg max-w-2xl text-orange-950">{homepage.meet_captain_nick_text}</p>
+      <Section className="bg-amber-50 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="order-2 lg:order-1 space-y-6">
+            <div>
+              <p className="text-orange-600 font-semibold text-sm uppercase tracking-wider mb-2">
+                Your Captain
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+                Meet Captain Nick Yacono
+              </h2>
+            </div>
+            <p className="text-lg text-slate-700 leading-relaxed">
+              {homepage.meet_captain_nick_text}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <div className="bg-white rounded-lg px-6 py-3 shadow-md">
+                <p className="text-sm text-slate-600">Licensed Since</p>
+                <p className="text-2xl font-bold text-blue-800">2011</p>
+              </div>
+              <div className="bg-white rounded-lg px-6 py-3 shadow-md">
+                <p className="text-sm text-slate-600">Local Knowledge</p>
+                <p className="text-2xl font-bold text-teal-600">30+ Years</p>
+              </div>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2">
+            <img
+              className="w-full rounded-2xl shadow-2xl"
+              src={urlForImage(homepage.meet_captain_nick_img).width(800).height(600).url()}
+              alt="Captain Nick Yacono"
+            />
+          </div>
         </div>
-        <img
-          className="md:col-span-3 lg:col-span-1 w-full"
-          src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()}
-        />
       </Section>
-      <Section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 w-full">
-        <Carousel className="max-w-3xl order-2" showArrows showIndicators>
-          {homepage.gallery
-            ?.map((img) => urlForImage(img).quality(90).url())
-            .map((imgUrl) => (
-              <img key={imgUrl} src={imgUrl} />
+      <Section className="bg-stone-50 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
+              {homepage.gallery_title}
+            </h2>
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">{homepage.gallery_caption}</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {homepage.gallery?.slice(0, 12).map((img, i) => (
+              <div
+                key={i}
+                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-200 group cursor-pointer aspect-square"
+              >
+                <img
+                  src={urlForImage(img).width(600).quality(85).url()}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  alt="Fishing catch"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              </div>
             ))}
-        </Carousel>
-        <div className="flex flex-col items-center md:col-span-2 lg:col-span-1 space-y-6 sm:order-3 text-left md:text-center">
-          <p className="max-w-xl font-medium text-blue-900 text-3xl tracking-wider uppercase">
-            {homepage.gallery_title}
-          </p>
-          <p className="max-w-xl text-blue-800 text-lg">{homepage.gallery_caption}</p>
+          </div>
         </div>
       </Section>
-      <Section className="flex flex-col gap-y-12 w-full" id="contact-us">
-        <div className="flex flex-col gap-y-1 w-full">
-          <p className="max-w-2xl font-medium text-3xl tracking-wide uppercase">Contact Us</p>
-          <p className="max-w-sm">
-            Ready to book? Contact us via message, call, or email and we&apos;ll get back to you
-            soon!
-          </p>
-        </div>
-        <div className="flex flex-col md:flex-row gap-12 items-center w-full">
-          <ContactUsForm />
-          <ContactUsInfo />
+      <Section className="bg-gradient-to-b from-slate-50 to-white py-16 md:py-24" id="contact-us">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Ready to Cast Off?
+            </h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Book your unforgettable fishing adventure today. We&apos;ll get back to you within 24
+              hours.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            <div className="lg:col-span-3">
+              <ContactUsForm />
+            </div>
+            <div className="lg:col-span-2">
+              <ContactUsInfo />
+            </div>
+          </div>
         </div>
       </Section>
       <Toaster />
