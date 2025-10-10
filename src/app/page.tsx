@@ -7,6 +7,7 @@ import { ContactUsForm } from './homepage/ContactUsForm';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
 import { ContactUsInfo } from './homepage/ContactUsInfo';
+import { GalleryWithLightbox } from './homepage/GalleryWithLightbox';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -159,21 +160,12 @@ export default async function Home() {
             </h2>
             <p className="text-xl text-slate-700 max-w-2xl mx-auto">{homepage.gallery_caption}</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {homepage.gallery?.slice(0, 12).map((img, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-200 group cursor-pointer aspect-square"
-              >
-                <img
-                  src={urlForImage(img).width(600).quality(85).url()}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  alt="Fishing catch"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-              </div>
-            ))}
-          </div>
+          <GalleryWithLightbox
+            images={homepage.gallery?.slice(0, 12).map((img) => ({
+              src: urlForImage(img).width(1200).quality(90).url(),
+              alt: 'Fishing catch',
+            }))}
+          />
         </div>
       </Section>
       <Section className="bg-gradient-to-b from-slate-50 to-white py-16 md:py-24" id="contact-us">
