@@ -106,7 +106,7 @@ export const PricingSection = () => {
 
         {/* Pricing Details */}
         <div className="bg-white rounded-xl p-8 max-w-2xl shadow-md border border-slate-200">
-          <h3 className="font-bold text-lg text-slate-800 mb-4">What's Included</h3>
+          <h3 className="font-bold text-lg text-slate-800 mb-4">What&apos;s Included</h3>
           <div className="space-y-3 text-slate-700">
             <p>
               ✓ All prices include tackle, fishing license, live bait, water, ice, and fish cleaning
