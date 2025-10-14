@@ -34,21 +34,7 @@ export default async function Home() {
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Endless Summer Adventures
             </h1>
-            {/* Captain Badge */}
-            <div className="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-full px-6 py-3 shadow-2xl">
-              <img
-                src={urlForImage(homepage.meet_captain_nick_img).width(60).height(60).url()}
-                alt="Captain Nick"
-                className="w-14 h-14 rounded-full border-4 border-orange-500 shadow-lg"
-              />
-              <div className="text-left">
-                <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">
-                  Your Captain
-                </p>
-                <p className="text-sm font-bold text-slate-800">Captain Nick Yacono</p>
-              </div>
-            </div>
-            <p className="text-xl md:text-2xl text-white max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            <p className="text-balance text-lg md:text-2xl text-white max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
               Experience Marco Island&apos;s premier fishing charters with Captain Nick Yacono
             </p>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -68,7 +54,7 @@ export default async function Home() {
               </a>
             </div>
           </div>
-          <div className="w-full lg:flex-1 max-w-2xl animate-in fade-in slide-in-from-right-8 duration-700 delay-200">
+          <div className="w-full max-w-2xl animate-in fade-in slide-in-from-right-8 duration-700 delay-200">
             <Carousel
               interval={5_000}
               className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] ring-4 ring-white/20"
