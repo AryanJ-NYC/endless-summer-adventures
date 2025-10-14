@@ -1,12 +1,10 @@
 import { Section } from './Section';
 import { BoatCard } from './BoatCard';
-import { type Boat } from '../../../sanity/lib/queries';
+import { fetchBoats } from '../../../sanity/lib/queries';
 
-type BoatsSectionProps = {
-  boats: Boat[];
-};
+export const BoatsSection = async () => {
+  const boats = await fetchBoats();
 
-export const BoatsSection = ({ boats }: BoatsSectionProps) => {
   if (!boats || boats.length === 0) {
     return null;
   }

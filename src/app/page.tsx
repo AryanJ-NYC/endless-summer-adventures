@@ -4,20 +4,17 @@ import { getReviews } from './homepage/lib/google-places';
 import { Section } from './homepage/Section';
 import { BoatsSection } from './homepage/BoatsSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
-import { fetchHomepage, fetchBoats } from '../../sanity/lib/queries';
+import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
 import { ContactUsInfo } from './homepage/ContactUsInfo';
 import { GalleryWithLightbox } from './homepage/GalleryWithLightbox';
+import { ReviewCard } from './homepage/ReviewCard';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
 
 export default async function Home() {
-  const [homepage, reviews, boats] = await Promise.all([
-    fetchHomepage(),
-    getReviews(),
-    fetchBoats(),
-  ]);
+  const [homepage, reviews] = await Promise.all([fetchHomepage(), getReviews()]);
 
   return (
     <main className="scroll-smooth tracking-wide">
@@ -73,37 +70,10 @@ export default async function Home() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {reviews.map((review) => (
-                  <div
+                  <ReviewCard
                     key={`${review.author_name}_${review.relative_time_description}`}
-                    className="bg-white border border-slate-200 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-200"
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <img
-                          className="h-10 w-10 rounded-full"
-                          referrerPolicy="no-referrer"
-                          src={review.profile_photo_url}
-                          alt={review.author_name}
-                        />
-                        <div>
-                          <p className="font-semibold text-slate-800">{review.author_name}</p>
-                          <p className="text-xs text-slate-500">
-                            {review.relative_time_description}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex gap-0.5">
-                        {new Array(review.rating).fill(null).map((_, i) => (
-                          <span key={`review_${i}`} className="text-amber-400 text-lg">
-                            ★
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-slate-700 text-sm leading-relaxed line-clamp-4">
-                      {review.text}
-                    </p>
-                  </div>
+                    review={review}
+                  />
                 ))}
               </div>
               <div className="text-center">
@@ -120,7 +90,7 @@ export default async function Home() {
           ) : null}
         </div>
       </Section>
-      <BoatsSection boats={boats} />
+      <BoatsSection />
       <Section className="bg-amber-50 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           <div className="order-2 lg:order-1 space-y-6">
