@@ -31,6 +31,9 @@ export default async function Home() {
 
         <div className="relative z-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
           <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-8 lg:max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+              Endless Summer Adventures
+            </h1>
             {/* Captain Badge */}
             <div className="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-full px-6 py-3 shadow-2xl">
               <img
@@ -45,10 +48,6 @@ export default async function Home() {
                 <p className="text-sm font-bold text-slate-800">Captain Nick Yacono</p>
               </div>
             </div>
-
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              Endless Summer Adventures
-            </h1>
             <p className="text-xl md:text-2xl text-white max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
               Experience Marco Island&apos;s premier fishing charters with Captain Nick Yacono
             </p>
