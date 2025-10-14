@@ -18,33 +18,64 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth tracking-wide">
-      <Section className="relative flex items-center bg-gradient-to-b from-sky-50 via-blue-50 to-white">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
-          <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-8 lg:max-w-2xl">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-blue-900 tracking-tight leading-tight">
+      <Section className="relative flex items-center min-h-[90vh] overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 z-0 bg-no-repeat bg-center bg-cover"
+          style={{
+            backgroundImage: `url(${urlForImage(homepage.splash_images[0]).quality(90).url()})`,
+          }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-blue-900/85 via-blue-800/70 to-transparent" />
+
+        <div className="relative z-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
+          <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-8 lg:max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+            {/* Captain Badge */}
+            <div className="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-full px-6 py-3 shadow-2xl">
+              <img
+                src={urlForImage(homepage.meet_captain_nick_img).width(60).height(60).url()}
+                alt="Captain Nick"
+                className="w-14 h-14 rounded-full border-4 border-orange-500 shadow-lg"
+              />
+              <div className="text-left">
+                <p className="text-xs font-semibold text-orange-600 uppercase tracking-wider">
+                  Your Captain
+                </p>
+                <p className="text-sm font-bold text-slate-800">Captain Nick Yacono</p>
+              </div>
+            </div>
+
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Endless Summer Adventures
             </h1>
-            <p className="text-xl md:text-2xl text-slate-700 max-w-xl leading-relaxed">
+            <p className="text-xl md:text-2xl text-white max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
               Experience Marco Island&apos;s premier fishing charters with Captain Nick Yacono
             </p>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <a
                 href="#contact-us"
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl px-10 py-5 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-200"
+                className="group relative bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl px-10 py-5 rounded-lg shadow-[0_10px_40px_rgba(249,115,22,0.4)] hover:shadow-[0_15px_50px_rgba(249,115,22,0.6)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300"
               >
-                Book Your Adventure
+                <span className="relative z-10">Book Your Adventure</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-orange-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
               <a
                 href="tel:+12397844935"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                className="group relative bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-[0_10px_40px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_50px_rgba(37,99,235,0.6)] transform hover:scale-105 transition-all duration-300 backdrop-blur-sm border-2 border-white/20"
               >
-                Call Now
+                <span className="relative z-10">Call Now</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-blue-700/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
             </div>
           </div>
-          <div className="w-full lg:flex-1 max-w-2xl">
-            <Carousel interval={5_000} className="rounded-2xl overflow-hidden shadow-2xl">
+          <div className="w-full lg:flex-1 max-w-2xl animate-in fade-in slide-in-from-right-8 duration-700 delay-200">
+            <Carousel
+              interval={5_000}
+              className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] ring-4 ring-white/20"
+            >
               {homepage.splash_images
+                .slice(1)
                 .map((slide) => urlForImage(slide).quality(90).url())
                 .map((imgUrl) => (
                   <img
