@@ -1,13 +1,10 @@
 import { twMerge } from 'tailwind-merge';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
-export const Section: React.FC<PropsWithChildren<Props>> = ({ className, ...props }) => (
+export const Section = ({ className, ...props }: Props) => (
   <div
     {...props}
-    className={twMerge(
-      'odd:bg-cyan-50 even:bg-orange-50 odd:text-cyan-950 even:text-orange-950 flex flex-col items-center gap-y-4 px-2 sm:px-8 py-16',
-      className
-    )}
+    className={twMerge('flex flex-col items-center gap-y-4 px-2 sm:px-8 py-16', className)}
   />
 );
 type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;

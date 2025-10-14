@@ -9,7 +9,7 @@ export const fetchHomepage = async () => {
 };
 
 export const fetchBoats = async () => {
-  const boatsQuery = groq`*[_type == "boat"] | order(_createdAt asc)`;
+  const boatsQuery = groq`*[_type == "boat"] | order(orderRank)`;
   const boats = await sanityFetch<Boat[]>({ query: boatsQuery });
   return boats;
 };

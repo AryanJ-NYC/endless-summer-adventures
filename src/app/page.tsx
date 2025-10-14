@@ -128,9 +128,7 @@ export default async function Home() {
               <p className="text-orange-600 font-semibold text-sm uppercase tracking-wider mb-2">
                 Your Captain
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-                Meet Captain Nick Yacono
-              </h2>
+              <h2 className="text-4xl font-bold text-slate-800 mb-4">Meet Captain Nick Yacono</h2>
             </div>
             <p className="text-lg text-slate-700 leading-relaxed">
               {homepage.meet_captain_nick_text}
