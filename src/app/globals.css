@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit), sans-serif;
+  }
+
+  h1 {
+    font-weight: 800;
+  }
+
+  h2 {
+    font-weight: 700;
+  }
+
+  h3, h4 {
+    font-weight: 600;
+  }
+}
+
 .thumbs {
   @apply flex flex-wrap justify-center gap-4;
   transform: none !important;

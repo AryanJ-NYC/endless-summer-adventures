@@ -1,15 +1,14 @@
-import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
-import logo from './favicon.ico';
 import { Carousel } from './homepage/Carousel';
 import { getReviews } from './homepage/lib/google-places';
 import { Section } from './homepage/Section';
-import { PricingSection } from './homepage/PricingSection';
+import { BoatsSection } from './homepage/BoatsSection';
 import { ContactUsForm } from './homepage/ContactUsForm';
 import { fetchHomepage } from '../../sanity/lib/queries';
 import { urlForImage } from '../../sanity/lib/image';
-import { CallOrText } from './homepage/CallOrText';
 import { ContactUsInfo } from './homepage/ContactUsInfo';
+import { GalleryWithLightbox } from './homepage/GalleryWithLightbox';
+import { ReviewCard } from './homepage/ReviewCard';
 
 const googleReviewsUrl =
   'https://www.google.com/maps/place/ENDLESS+SUMMER+ADVENTURES/@25.9838265,-81.7291439,6z/data=!4m12!1m2!2m1!1sendless+summer+adventures!3m8!1s0x88daeffaae30b81f:0xafb7a32c4acfa3d3!8m2!3d25.9838265!4d-81.7291439!9m1!1b1!15sChllbmRsZXNzIHN1bW1lciBhZHZlbnR1cmVzkgEPZmlzaGluZ19jaGFydGVy4AEA!16s%2Fg%2F11l4d81b_4?entry=ttu';
@@ -19,124 +18,162 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth tracking-wide">
-      <Section className="flex flex-col md:flex-row justify-end gap-16">
-        <div className="flex flex-col 2xl:flex-grow 2xl:flex-shrink-0 justify-center items-center gap-y-8 text-center max-w-3xl">
-          <h1 className="text-5xl lg:text-6xl text-cyan-700 tracking-wider uppercase">
-            Endless Summer Adventures
-          </h1>
-          <p className="max-w-lg text-cyan-600 text-xl lg:text-2xl tracking-wide">
-            Dive into Marco Island&apos;s best fishing with Captain Nick Yacono at Endless Summer
-            Adventures!
-          </p>
-          <a
-            className="bg-cyan-200 shadow-lg shadow-cyan-900 px-8 py-4 rounded-sm text-cyan-900 text-3xl tracking-wide"
-            href="#contact-us"
-          >
-            Contact Us!
-          </a>
-        </div>
-        <Carousel interval={5_000}>
-          {homepage.splash_images
-            .map((slide) => urlForImage(slide).quality(90).url())
-            .map((imgUrl) => (
-              <img
-                className="max-h-fit flex-grow object-contain rounded-lg"
-                key={imgUrl}
-                src={imgUrl}
-              />
-            ))}
-        </Carousel>
-      </Section>
-      <Section>
-        <p className="max-w-2xl font-medium text-orange-950 text-3xl text-center tracking-wide uppercase">
-          {homepage.marketing_blurb}
-        </p>
-        {reviews.length ? (
-          <div className="flex flex-col items-center gap-y-6 py-8">
-            <p className="font-semibold text-center text-blue-900 text-xl tracking-widest uppercase">
-              Top-Rated on Google
-            </p>
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {reviews.map((review) => {
-                return (
-                  <div
-                    className="bg-white border flex flex-col gap-y-4 rounded-md text-sm md:text-base py-4 px-8 max-h-96 overflow-y-auto"
-                    key={`${review.author_name}_${review.relative_time_description}`}
-                  >
-                    <div className="flex gap-x-4 justify-between">
-                      <div className="flex gap-x-4 items-center">
-                        <img
-                          className="h-8 w-8"
-                          referrerPolicy="no-referrer"
-                          src={review.profile_photo_url}
-                        />
-                        <div>
-                          <p className="text-gray-800">{review.author_name}</p>
-                          <p className="text-gray-500 text-xs">
-                            {review.relative_time_description}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex gap-x-1 self-end">
-                        {new Array(review.rating).fill(null).map((_, i) => (
-                          <p key={`review_${i}`}>⭐</p>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-gray-800">{review.text}</p>
-                  </div>
-                );
-              })}
-            </div>
-            <a
-              className="bg-cyan-200 px-6 py-2 rounded-sm text-cyan-900"
-              href={googleReviewsUrl}
-              target="_blank"
-            >
-              Read all Google Reviews
-            </a>
-          </div>
-        ) : null}
-      </Section>
-      <PricingSection />
-      <Section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 justify-center w-full">
-        <div className="md:col-span-2 lg:col-span-1 space-y-6">
-          <p className="max-w-2xl font-medium text-orange-900 text-3xl tracking-wider uppercase">
-            Meet Captain Nick Yacono
-          </p>
-          <p className="text-lg max-w-2xl text-orange-950">{homepage.meet_captain_nick_text}</p>
-        </div>
-        <img
-          className="md:col-span-3 lg:col-span-1 w-full"
-          src={urlForImage(homepage.meet_captain_nick_img).width(666).height(420).url()}
+      <Section className="relative flex items-center min-h-[90vh] overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 z-0 bg-no-repeat bg-center bg-cover"
+          style={{
+            backgroundImage: `url(${urlForImage(homepage.splash_images[0]).quality(90).url()})`,
+          }}
         />
-      </Section>
-      <Section className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-2 gap-12 w-full">
-        <Carousel className="max-w-3xl order-2" showArrows showIndicators>
-          {homepage.gallery
-            ?.map((img) => urlForImage(img).quality(90).url())
-            .map((imgUrl) => (
-              <img key={imgUrl} src={imgUrl} />
-            ))}
-        </Carousel>
-        <div className="flex flex-col items-center md:col-span-2 lg:col-span-1 space-y-6 sm:order-3 text-left md:text-center">
-          <p className="max-w-xl font-medium text-blue-900 text-3xl tracking-wider uppercase">
-            {homepage.gallery_title}
-          </p>
-          <p className="max-w-xl text-blue-800 text-lg">{homepage.gallery_caption}</p>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-blue-900/85 via-blue-800/70 to-transparent" />
+
+        <div className="relative z-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
+          <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left space-y-8 lg:max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+              Endless Summer Adventures
+            </h1>
+            <p className="text-balance text-lg md:text-2xl text-white max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+              Experience Marco Island&apos;s premier fishing charters with Captain Nick Yacono
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href="#contact-us"
+                className="group relative bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl px-10 py-5 rounded-lg shadow-[0_10px_40px_rgba(249,115,22,0.4)] hover:shadow-[0_15px_50px_rgba(249,115,22,0.6)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300"
+              >
+                <span className="relative z-10">Book Your Adventure</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-orange-600/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+              <a
+                href="tel:+12397844935"
+                className="group relative bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl px-10 py-5 rounded-lg shadow-[0_10px_40px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_50px_rgba(37,99,235,0.6)] transform hover:scale-105 transition-all duration-300 backdrop-blur-sm border-2 border-white/20"
+              >
+                <span className="relative z-10">Call Now</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-blue-700/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </div>
+          </div>
+          <div className="w-full max-w-2xl animate-in fade-in slide-in-from-right-8 duration-700 delay-200">
+            <Carousel
+              interval={5_000}
+              className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] ring-4 ring-white/20"
+            >
+              {homepage.splash_images
+                .slice(1)
+                .map((slide) => urlForImage(slide).quality(90).url())
+                .map((imgUrl) => (
+                  <img
+                    className="w-full h-full object-cover"
+                    key={imgUrl}
+                    src={imgUrl}
+                    alt="Fishing adventure"
+                  />
+                ))}
+            </Carousel>
+          </div>
         </div>
       </Section>
-      <Section className="flex flex-col gap-y-12 w-full" id="contact-us">
-        <div className="flex flex-col gap-y-1 w-full">
-          <p className="max-w-2xl font-medium text-3xl tracking-wide uppercase">Contact Us</p>
-          <p className="max-w-sm">
-            Ready to book? Contact us via message, call, or email and we&apos;ll get back to you
-            soon!
-          </p>
+      <Section className="bg-stone-50 py-16 md:py-24">
+        <div className="flex flex-col items-center gap-12 max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 text-center max-w-3xl leading-tight">
+            {homepage.marketing_blurb}
+          </h2>
+          {reviews.length ? (
+            <div className="w-full flex flex-col gap-12">
+              <h3 className="text-2xl font-bold text-slate-800 text-center">
+                What Our Anglers Say
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reviews.map((review) => (
+                  <ReviewCard
+                    key={`${review.author_name}_${review.relative_time_description}`}
+                    review={review}
+                  />
+                ))}
+              </div>
+              <div className="text-center">
+                <a
+                  href={googleReviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200"
+                >
+                  Read All Reviews
+                </a>
+              </div>
+            </div>
+          ) : null}
         </div>
-        <div className="flex flex-col md:flex-row gap-12 items-center w-full">
-          <ContactUsForm />
-          <ContactUsInfo />
+      </Section>
+      <BoatsSection />
+      <Section className="bg-amber-50 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="order-2 lg:order-1 space-y-6">
+            <div>
+              <p className="text-orange-600 font-semibold text-sm uppercase tracking-wider mb-2">
+                Your Captain
+              </p>
+              <h2 className="text-4xl font-bold text-slate-800 mb-4">Meet Captain Nick Yacono</h2>
+            </div>
+            <p className="text-lg text-slate-700 leading-relaxed">
+              {homepage.meet_captain_nick_text}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <div className="bg-white rounded-lg px-6 py-3 shadow-md">
+                <p className="text-sm text-slate-600">Licensed Since</p>
+                <p className="text-2xl font-bold text-blue-800">2011</p>
+              </div>
+              <div className="bg-white rounded-lg px-6 py-3 shadow-md">
+                <p className="text-sm text-slate-600">Local Knowledge</p>
+                <p className="text-2xl font-bold text-teal-600">30+ Years</p>
+              </div>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2">
+            <img
+              className="w-full rounded-2xl shadow-2xl"
+              src={urlForImage(homepage.meet_captain_nick_img).width(800).height(600).url()}
+              alt="Captain Nick Yacono"
+            />
+          </div>
+        </div>
+      </Section>
+      <Section className="bg-stone-50 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
+              {homepage.gallery_title}
+            </h2>
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">{homepage.gallery_caption}</p>
+          </div>
+          <GalleryWithLightbox
+            images={homepage.gallery.map((img) => ({
+              src: urlForImage(img).width(1200).quality(90).url(),
+              alt: 'Fishing catch',
+            }))}
+          />
+        </div>
+      </Section>
+      <Section className="bg-gradient-to-b from-slate-50 to-white py-16 md:py-24" id="contact-us">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Ready to Cast Off?
+            </h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Book your unforgettable fishing adventure today. We&apos;ll get back to you within 24
+              hours.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            <div className="lg:col-span-3">
+              <ContactUsForm />
+            </div>
+            <div className="lg:col-span-2">
+              <ContactUsInfo />
+            </div>
+          </div>
         </div>
       </Section>
       <Toaster />
